@@ -14,11 +14,10 @@ Useful for **CTFs**, reverse engineering, or lightweight obfuscation.
 - 💡 Great for CTF token decoding (like: `e3o=` → `10`)
 
 ---
-##🖥️ Usage
-Open locally
-Clone this repo
-
-Open index.html in your browser
+## 🖥️ Usage
+-  Open locally
+-  Clone this repo or Download the html file in your machine
+-  Open index.html in your browser
 
 Or host it via GitHub Pages, Netlify, or your own server.
 <br><img src="image.png" alt="xor-encode-decode-tools-interface" width="600" height="600">
