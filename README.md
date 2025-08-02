@@ -21,7 +21,7 @@ Clone this repo
 Open index.html in your browser
 
 Or host it via GitHub Pages, Netlify, or your own server.
-
+<br><img src="image.png" alt="xor-encode-decode-tools-interface" width="600" height="600">
 
 ## 🧪 Example
 
