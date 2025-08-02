@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>XOR Encoder/Decoder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f4f4f4;
+    }
+    h1 {
+      text-align: center;
+    }
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    input, textarea, button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      background: #007BFF;
+      color: white;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>XOR Encode & Decode Tool</h1>
+  <div class="box">
+    <label for="input">Input Text</label>
+    <input id="input" placeholder="Enter text to encode or decode">
+
+    <label for="key">XOR Key</label>
+    <input id="key" type="number" value="74">
+
+    <button onclick="encode()">Encode (XOR + Base64)</button>
+    <textarea id="encoded" rows="3" readonly placeholder="Encoded result will appear here"></textarea>
+
+    <button onclick="decode()">Decode (Base64 + XOR)</button>
+    <textarea id="decoded" rows="3" readonly placeholder="Decoded result will appear here"></textarea>
+  </div>
+
+  <script>
+    function xorEncode(str, key) {
+      const bytes = [];
+      for (let i = 0; i < str.length; i++) {
+        bytes.push(str.charCodeAt(i) ^ key);
+      }
+      let binary = '';
+      for (let b of bytes) binary += String.fromCharCode(b);
+      return btoa(binary);
+    }
+
+    function xorDecode(base64Str, key) {
+      let binary = atob(base64Str);
+      let decoded = '';
+      for (let i = 0; i < binary.length; i++) {
+        decoded += String.fromCharCode(binary.charCodeAt(i) ^ key);
+      }
+      return decoded;
+    }
+
+    function encode() {
+      const input = document.getElementById('input').value;
+      const key = parseInt(document.getElementById('key').value);
+      const result = xorEncode(input, key);
+      document.getElementById('encoded').value = result;
+    }
+
+    function decode() {
+      const input = document.getElementById('input').value;
+      const key = parseInt(document.getElementById('key').value);
+      try {
+        const result = xorDecode(input, key);
+        document.getElementById('decoded').value = result;
+      } catch (err) {
+        document.getElementById('decoded').value = "Invalid Base64 input or key.";
+      }
+    }
+  </script>
+</body>
+</html>
